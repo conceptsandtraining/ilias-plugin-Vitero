@@ -11,6 +11,27 @@ include_once("./Services/Component/classes/class.ilPluginConfigGUI.php");
  */
 class ilViteroConfigGUI extends ilPluginConfigGUI
 {
+	const F_SERVER = 'server';
+	const F_ADMIN = 'admin';
+	const F_PASS = 'pass';
+	const F_CUSTOMER = 'customer';
+	const F_LDAP = 'ldap';
+	const F_CAFE = 'cafe';
+	const F_CONTENT = 'content';
+	const F_STD_ROOM = 'std_room';
+	const F_WEBSTART = 'webstart';
+	const F_UPREFIX = 'uprefix';
+	const F_GRACE_PERIOD_BEFORE = 'grace_period_before';
+	const F_GRACE_PERIOD_AFTER = 'grace_period_after';
+	const F_AVATAR = 'avatar';
+	const F_MTOM_CERT = 'mtom_cert';
+	const F_PHONE_CONFERENCE = 'phone_conference';
+	const F_PHONE_DIAL_OUT = 'phone_dial_out';
+	const F_PHONE_DIAL_OUT_PARTICIPANTS = 'phone_dial_out_participants';
+	const F_MOBILE = 'mobile';
+	const F_RECORDER = 'recorder';
+	const F_LEARNING_PROGRESS = 'learning_progress';
+
 	/**
 	* Handles all commmands, default is "configure"
 	*/
@@ -86,7 +107,7 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		// Server url
 		$uri = new ilTextInputGUI(
 			$this->getPluginObject()->txt('server_uri'),
-			'server_uri'
+			self::F_SERVER
 		);
 		$uri->setRequired(true);
 		$uri->setSize(80);
@@ -97,7 +118,7 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		// Admin user
 		$admin = new ilTextInputGUI(
 			$this->getPluginObject()->txt('admin_user'),
-			'admin_user'
+			self::F_ADMIN
 		);
 		$admin->setRequired(true);
 		$admin->setSize(16);
@@ -108,7 +129,7 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		// Admin pass
 		$pass = new ilPasswordInputGUI(
 			$this->getPluginObject()->txt('admin_pass'),
-			'admin_pass'
+			self::F_PASS
 		);
 		$pass->setSkipSyntaxCheck(true);
 		//$pass->setRequired(true);
@@ -122,7 +143,7 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		// Customer id
 		$cid = new ilNumberInputGUI(
 			$this->getPluginObject()->txt('customer_id'),
-			'customer'
+			self::F_CUSTOMER
 		);
 		$cid->setSize(3);
 		$cid->setMaxLength(9);
@@ -134,7 +155,7 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		// Webstart
 		$ws = new ilTextInputGUI(
 			$this->getPluginObject()->txt('webstart_url'),
-			'webstart'
+			self::F_WEBSTART
 		);
 		$ws->setRequired(true);
 		$ws->setSize(80);
@@ -151,7 +172,7 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		// cafe
 		$cafe = new ilCheckboxInputGUI(
 			$this->getPluginObject()->txt('cafe_setting'),
-			'cafe'
+			self::F_CAFE
 		);
 		$cafe->setInfo($this->getPluginObject()->txt('cafe_setting_info'));
 		$cafe->setValue(1);
@@ -161,7 +182,7 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		// Standard room
 		$standard = new ilCheckboxInputGUI(
 			$this->getPluginObject()->txt('standard_room'),
-			'std_room'
+			self::F_STD_ROOM
 		);
 		$standard->setInfo(
 			$this->getPluginObject()->txt('standard_room_info')
@@ -174,7 +195,7 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		// -> phone conference
 		$conference = new ilCheckboxInputGUI(
 			ilViteroPlugin::getInstance()->txt('settings_phone_conference'),
-			'phone_conference'
+			self::F_PHONE_CONFERENCE
 		);
 		$conference->setInfo(
 			ilViteroPlugin::getInstance()->txt('settings_phone_conference_info')
@@ -185,7 +206,7 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		// -> phone dial-out
 		$dial_out = new ilCheckboxInputGUI(
 			ilViteroPlugin::getInstance()->txt('settings_phone_dial_out'),
-			'phone_dial_out'
+			self::F_PHONE_DIAL_OUT
 		);
 		$dial_out->setInfo(
 			ilViteroPlugin::getInstance()->txt('settings_phone_dial_out_info')
@@ -196,7 +217,7 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		// -> phone dial-out participant
 		$dial_out_phone_part = new ilDclCheckboxInputGUI(
 			ilViteroPlugin::getInstance()->txt('settings_phone_dial_out_part'),
-			'phone_dial_out_part'
+			self::F_PHONE_DIAL_OUT_PARTICIPANTS
 		);
 		$dial_out_phone_part->setInfo(
 			ilViteroPlugin::getInstance()->txt('settings_phone_dial_out_part_info')
@@ -207,7 +228,7 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		// mobile access
 		$mobile = new ilCheckboxInputGUI(
 			$this->getPluginObject()->txt('settings_mobile'),
-			'mobile'
+			self::F_MOBILE
 		);
 		$mobile->setInfo(
 			$this->getPluginObject()->txt('settings_mobile_info')
@@ -219,7 +240,7 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		// recorder access
 		$recorder = new ilCheckboxInputGUI(
 			$this->getPluginObject()->txt('settings_recorder'),
-			'recorder'
+			self::F_RECORDER
 		);
 		$recorder->setInfo(
 			$this->getPluginObject()->txt('settings_recorder_info')
@@ -231,7 +252,7 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		// content
 		$content = new ilCheckboxInputGUI(
 			$this->getPluginObject()->txt('content_admin'),
-			'content'
+			self::F_CONTENT
 		);
 		$content->setInfo($this->getPluginObject()->txt('content_admin_info'));
 		$content->setValue(1);
@@ -242,7 +263,7 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		// ldap
 		$ldap = new ilCheckboxInputGUI(
 			$this->getPluginObject()->txt('ldap_setting'),
-			'ldap'
+			self::F_LDAP
 		);
 		$ldap->setInfo($this->getPluginObject()->txt('ldap_setting_info'));
 		$ldap->setValue(1);
@@ -250,7 +271,7 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		#$form->addItem($ldap);
 
 		// userprefix
-		$prefix = new ilTextInputGUI($this->getPluginObject()->txt('uprefix'), 'uprefix');
+		$prefix = new ilTextInputGUI($this->getPluginObject()->txt('uprefix'), self::F_UPREFIX);
 		$prefix->setInfo($this->getPluginObject()->txt('uprefix_info'));
 		$prefix->setSize(6);
 		$prefix->setMaxLength(16);
@@ -258,7 +279,7 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		$form->addItem($prefix);
 
 		// avatar
-		$ava = new ilCheckboxInputGUI($this->getPluginObject()->txt('avatar'), 'avatar');
+		$ava = new ilCheckboxInputGUI($this->getPluginObject()->txt('avatar'), self::F_AVATAR);
 		$ava->setValue(1);
 		$ava->setChecked($settings->isAvatarEnabled());
 
@@ -272,7 +293,7 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 			$ava->setAlert($this->getPluginObject()->txt('avatar_warning'));
 		}
 
-		$cert = new ilTextInputGUI($this->getPluginObject()->txt('mtom_cert'),'mtom_cert');
+		$cert = new ilTextInputGUI($this->getPluginObject()->txt('mtom_cert'),self::SETTING_MTOM_CERT);
 		$cert->setValue($settings->getMTOMCert());
 		$cert->setSize(100);
 		$cert->setMaxLength(512);
@@ -285,7 +306,7 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		*/
 
 		// grace period before
-		$gpb = new ilSelectInputGUI($this->getPluginObject()->txt('std_grace_period_before'), 'grace_period_before');
+		$gpb = new ilSelectInputGUI($this->getPluginObject()->txt('std_grace_period_before'), self::F_GRACE_PERIOD_BEFORE);
 		$gpb->setInfo($this->getPluginObject()->txt('std_grace_period_before_info'));
 		$gpb->setOptions(
 			array(
@@ -300,7 +321,7 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		$form->addItem($gpb);
 
 		// grace period after
-		$gpa = new ilSelectInputGUI($this->getPluginObject()->txt('std_grace_period_after'), 'grace_period_after');
+		$gpa = new ilSelectInputGUI($this->getPluginObject()->txt('std_grace_period_after'), self::F_GRACE_PERIOD_AFTER);
 		$gpa->setInfo($this->getPluginObject()->txt('std_grace_period_after_info'));
 		$gpa->setOptions(
 			array(
@@ -319,7 +340,7 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		//Step 2 check Statistik-Modul
 		if($this->hasAccessToLearningProgress())
 		{
-			$learning_progress = new ilCheckboxInputGUI($this->getPluginObject()->txt('activate_learning_progress'), 'learning_progress');
+			$learning_progress = new ilCheckboxInputGUI($this->getPluginObject()->txt('activate_learning_progress'), self::F_LEARNING_PROGRESS);
 			$learning_progress->setChecked($settings->isLearningProgressEnabled());
 
 			$learning_progress->setInfo($this->getPluginObject()->txt('activate_learning_progress_info'));
@@ -346,29 +367,29 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		{
 			$this->getPluginObject()->includeClass('class.ilViteroSettings.php');
 			$settings = ilViteroSettings::getInstance();
-			$settings->setServerUrl($form->getInput('server_uri'));
-			$settings->setAdminUser($form->getInput('admin_user'));
-			if(strlen($form->getInput('admin_pass')))
+			$settings->setServerUrl($form->getInput(self::F_SERVER));
+			$settings->setAdminUser($form->getInput(self::F_ADMIN));
+			if(strlen($form->getInput(self::F_PASS)))
 			{
-				$settings->setAdminPass($form->getInput('admin_pass'));
+				$settings->setAdminPass($form->getInput(self::F_PASS));
 			}
-			$settings->setCustomer((int)$form->getInput('customer'));
-			$settings->useLdap((bool)$form->getInput('ldap'));
-			$settings->enableCafe((bool)$form->getInput('cafe'));
-			$settings->enableContentAdministration((bool)$form->getInput('content'));
-			$settings->enableStandardRoom((bool)$form->getInput('std_room'));
-			$settings->setWebstartUrl($form->getInput('webstart'));
-			$settings->setUserPrefix($form->getInput('uprefix'));
-			$settings->setStandardGracePeriodBefore($form->getInput('grace_period_before'));
-			$settings->setStandardGracePeriodAfter($form->getInput('grace_period_after'));
-			$settings->enableAvatar((bool)$form->getInput('avatar'));
-			//$settings->setMTOMCert($form->getInput('mtom_cert'));
-			$settings->enablePhoneConference((bool)$form->getInput('phone_conference'));
-			$settings->enablePhoneDialOut((bool)$form->getInput('phone_dial_out'));
-			$settings->enablePhoneDialOutParticipants((bool)$form->getInput('phone_dial_out_part'));
-			$settings->enableMobileAccess((bool)$form->getInput('mobile'));
-			$settings->enableSessionRecorder((bool)$form->getInput('recorder'));
-			$settings->enableLearningProgress((bool)$form->getInput('learning_progress'));
+			$settings->setCustomer((int)$form->getInput(self::F_CUSTOMER));
+			$settings->useLdap((bool)$form->getInput(self::F_LDAP));
+			$settings->enableCafe((bool)$form->getInput(self::F_CAFE));
+			$settings->enableContentAdministration((bool)$form->getInput(self::F_CONTENT));
+			$settings->enableStandardRoom((bool)$form->getInput(self::F_STD_ROOM));
+			$settings->setWebstartUrl($form->getInput(self::F_WEBSTART));
+			$settings->setUserPrefix($form->getInput(self::F_UPREFIX));
+			$settings->setStandardGracePeriodBefore($form->getInput(self::F_GRACE_PERIOD_BEFORE));
+			$settings->setStandardGracePeriodAfter($form->getInput(self::F_GRACE_PERIOD_AFTER));
+			$settings->enableAvatar((bool)$form->getInput(self::F_AVATAR));
+			//$settings->setMTOMCert($form->getInput(self::SETTING_MTOM_CERT));
+			$settings->enablePhoneConference((bool)$form->getInput(self::F_PHONE_CONFERENCE));
+			$settings->enablePhoneDialOut((bool)$form->getInput(self::F_PHONE_DIAL_OUT));
+			$settings->enablePhoneDialOutParticipants((bool)$form->getInput(self::F_PHONE_DIAL_OUT_PARTICIPANTS));
+			$settings->enableMobileAccess((bool)$form->getInput(self::F_MOBILE));
+			$settings->enableSessionRecorder((bool)$form->getInput(self::F_RECORDER));
+			$settings->enableLearningProgress((bool)$form->getInput(self::F_LEARNING_PROGRESS));
 			$settings->save();
 
 			ilUtil::sendSuccess($lng->txt('settings_saved'), true);
