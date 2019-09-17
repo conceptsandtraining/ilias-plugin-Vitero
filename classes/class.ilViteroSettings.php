@@ -65,7 +65,7 @@ class ilViteroSettings
 	private $pass = '';
 
 	/**
-	 * @var string|null
+	 * @var int|null
 	 */
 	private $customer = NULL;
 
@@ -95,9 +95,9 @@ class ilViteroSettings
 	private $user_prefix = 'il_';
 
 	/**
-	 * @var int
+	 * @var bool
 	 */
-	private $avatar = 0;
+	private $avatar = false;
 
 	/**
 	 * @var string
@@ -176,17 +176,17 @@ class ilViteroSettings
 	 * Get storage
 	 * @return ilSetting
 	 */
-	public function getStorage()
+	public function getStorage(): ilSetting
 	{
 		return $this->storage;
 	}
 	
-	public function getServerUrl()
+	public function getServerUrl() : string
 	{
 		return $this->url;
 	}
 	
-	public function setServerUrl($a_url)
+	public function setServerUrl(string $a_url)
 	{
 		$this->url = $a_url;
 	}
@@ -194,149 +194,149 @@ class ilViteroSettings
 	/**
 	 * Get direct link to group managment
 	 */
-	public function getGroupFolderLink()
+	public function getGroupFolderLink() : string
 	{
 		$group_url = str_replace('services', '', $this->getServerUrl());
 		$group_url = ilUtil::removeTrailingPathSeparators($group_url);
 		return $group_url.'/user/cms/groupfolder.htm';
 	}
 
-	public function setWebstartUrl($a_url)
+	public function setWebstartUrl(string $a_url)
 	{
 		$this->webstart = $a_url;
 	}
 
-	public function getWebstartUrl()
+	public function getWebstartUrl() : string
 	{
 		return $this->webstart;
 	}
 	
-	public function setAdminUser($a_admin)
+	public function setAdminUser(string $a_admin)
 	{
 		$this->admin = $a_admin;
 	}
 	
-	public function getAdminUser()
+	public function getAdminUser() : string
 	{
 		return $this->admin;
 	}
 	
-	public function setAdminPass($a_pass)
+	public function setAdminPass(string $a_pass)
 	{
 		$this->pass = $a_pass;
 	}
 	
-	public function getAdminPass()
+	public function getAdminPass() : string
 	{
 		return $this->pass;
 	}
 
-	public function setCustomer($a_cust)
+	public function setCustomer(int $a_cust = null)
 	{
 		$this->customer = $a_cust;
 	}
 
-	public function getCustomer()
+	public function getCustomer() : int
 	{
 		return $this->customer;
 	}
 
-	public function useLdap($a_stat)
+	public function useLdap(bool $a_stat)
 	{
 		$this->use_ldap = $a_stat;
 	}
 
-	public function isLdapUsed()
+	public function isLdapUsed() : bool
 	{
 		return $this->use_ldap;
 	}
 
-	public function enableCafe($a_stat)
+	public function enableCafe(bool $a_stat)
 	{
 		$this->enable_cafe = $a_stat;
 	}
 
-	public function isCafeEnabled()
+	public function isCafeEnabled() : bool
 	{
 		return $this->enable_cafe;
 	}
 
-	public function enableStandardRoom($a_stat)
+	public function enableStandardRoom(bool $a_stat)
 	{
 		$this->enable_standard_room = $a_stat;
 	}
 
-	public function isStandardRoomEnabled()
+	public function isStandardRoomEnabled() : bool
 	{
 		return $this->enable_standard_room;
 	}
 	
-	public function enableContentAdministration($a_stat)
+	public function enableContentAdministration(bool $a_stat)
 	{
 		$this->enable_content = $a_stat;
 	}
 	
-	public function isContentAdministrationEnabled()
+	public function isContentAdministrationEnabled() : bool
 	{
 		return $this->enable_content;
 	}
 
-	public function setUserPrefix($a_prefix)
+	public function setUserPrefix(string $a_prefix)
 	{
 		$this->user_prefix = $a_prefix;
 	}
 
-	public function getUserPrefix()
+	public function getUserPrefix() : string
 	{
 		return $this->user_prefix;
 	}
 
-	public function setStandardGracePeriodBefore($a_val)
+	public function setStandardGracePeriodBefore(int $a_val)
 	{
 		$this->grace_period_before = $a_val;
 	}
 
-	public function getStandardGracePeriodBefore()
+	public function getStandardGracePeriodBefore() : int
 	{
 		return $this->grace_period_before;
 	}
 
-	public function setStandardGracePeriodAfter($a_val)
+	public function setStandardGracePeriodAfter(int $a_val)
 	{
 		$this->grace_period_after = $a_val;
 	}
 
-	public function getStandardGracePeriodAfter()
+	public function getStandardGracePeriodAfter() : int
 	{
 		return $this->grace_period_after;
 	}
 
-	public function enableAvatar($a_stat)
+	public function enableAvatar(bool $a_stat)
 	{
 		$this->avatar = $a_stat;
 	}
 
-	public function isAvatarEnabled()
+	public function isAvatarEnabled() : bool
 	{
-		return (bool) $this->avatar;
+		return $this->avatar;
 	}
 	
-	public function setMTOMCert($a_cert)
+	public function setMTOMCert(string $a_cert)
 	{
 		$this->mtom_cert = $a_cert;
 	}
 	
-	public function getMTOMCert()
+	public function getMTOMCert() : string
 	{
 		return $this->mtom_cert;
 	}
 
-	public function enableLearningProgress($a_stat)
+	public function enableLearningProgress(bool $a_stat)
 	{
 		$this->enable_learning_progress = $a_stat;
 	}
 
-	public function isLearningProgressEnabled()
+	public function isLearningProgressEnabled() : bool
 	{
 		return $this->enable_learning_progress;
 	}
@@ -351,22 +351,22 @@ class ilViteroSettings
 		$this->getStorage()->set(self::SETTING_ADMIN, $this->getAdminUser());
 		$this->getStorage()->set(self::SETTING_PASS, $this->getAdminPass());
 		$this->getStorage()->set(self::SETTING_CUSTOMER, $this->getCustomer());
-		$this->getStorage()->set(self::SETTING_LDAP, $this->isLdapUsed());
-		$this->getStorage()->set(self::SETTING_CAFE, $this->isCafeEnabled());
-		$this->getStorage()->set(self::SETTING_CONTENT,$this->isContentAdministrationEnabled());
-		$this->getStorage()->set(self::SETTING_STD_ROOM,(int) $this->isStandardRoomEnabled());
-		$this->getStorage()->set(self::SETTING_WEBSTART,$this->getWebstartUrl());
-		$this->getStorage()->set(self::SETTING_UPREFIX,$this->getUserPrefix());
-		$this->getStorage()->set(self::SETTING_GRACE_PERIOD_BEFORE,$this->getStandardGracePeriodBefore());
-		$this->getStorage()->set(self::SETTING_GRACE_PERIOD_AFTER,$this->getStandardGracePeriodAfter());
-		$this->getStorage()->set(self::SETTING_AVATAR,(int) $this->isAvatarEnabled());
-		$this->getStorage()->set(self::SETTING_MTOM_CERT,$this->getMTOMCert());
+		$this->getStorage()->set(self::SETTING_LDAP, (int)$this->isLdapUsed());
+		$this->getStorage()->set(self::SETTING_CAFE, (int)$this->isCafeEnabled());
+		$this->getStorage()->set(self::SETTING_CONTENT, (int)$this->isContentAdministrationEnabled());
+		$this->getStorage()->set(self::SETTING_STD_ROOM, (int)$this->isStandardRoomEnabled());
+		$this->getStorage()->set(self::SETTING_WEBSTART, $this->getWebstartUrl());
+		$this->getStorage()->set(self::SETTING_UPREFIX, $this->getUserPrefix());
+		$this->getStorage()->set(self::SETTING_GRACE_PERIOD_BEFORE, $this->getStandardGracePeriodBefore());
+		$this->getStorage()->set(self::SETTING_GRACE_PERIOD_AFTER, $this->getStandardGracePeriodAfter());
+		$this->getStorage()->set(self::SETTING_AVATAR, (int)$this->isAvatarEnabled());
+		$this->getStorage()->set(self::SETTING_MTOM_CERT, $this->getMTOMCert());
 		$this->getStorage()->set(self::SETTING_PHONE_CONFERENCE, (int) $this->isPhoneConferenceEnabled());
 		$this->getStorage()->set(self::SETTING_PHONE_DIAL_OUT, (int) $this->isPhoneDialOutEnabled());
-		$this->getStorage()->set(self::SETTING_PHONE_DIAL_OUT_PARTICIPANTS,$this->isPhoneDialOutParticipantsEnabled());
+		$this->getStorage()->set(self::SETTING_PHONE_DIAL_OUT_PARTICIPANTS, (int)$this->isPhoneDialOutParticipantsEnabled());
 		$this->getStorage()->set(self::SETTING_MOBILE, (int) $this->isMobileAccessEnabled());
 		$this->getStorage()->set(self::SETTING_RECORDER, (int) $this->isSessionRecorderEnabled());
-		$this->getStorage()->set(self::SETTING_LEARNING_PROGRESS, $this->isLearningProgressEnabled());
+		$this->getStorage()->set(self::SETTING_LEARNING_PROGRESS, (int)$this->isLearningProgressEnabled());
 
 	}
 
@@ -378,61 +378,46 @@ class ilViteroSettings
 		$this->setServerUrl($this->getStorage()->get(self::SETTING_SERVER, $this->url));
 		$this->setAdminUser($this->getStorage()->get(self::SETTING_ADMIN, $this->admin));
 		$this->setAdminPass($this->getStorage()->get(self::SETTING_PASS, $this->pass));
-		$this->setCustomer($this->getStorage()->get(self::SETTING_CUSTOMER, $this->customer));
-		$this->useLdap($this->getStorage()->get(self::SETTING_LDAP, $this->use_ldap));
-		$this->enableCafe($this->getStorage()->get(self::SETTING_CAFE, $this->enable_cafe));
-		$this->enableContentAdministration($this->getStorage()->get(self::SETTING_CONTENT,$this->enable_content));
-		$this->enableStandardRoom($this->getStorage()->get(self::SETTING_STD_ROOM, $this->enable_standard_room));
+		$this->setCustomer((int)$this->getStorage()->get(self::SETTING_CUSTOMER, $this->customer));
+		$this->useLdap((bool)$this->getStorage()->get(self::SETTING_LDAP, $this->use_ldap));
+		$this->enableCafe((bool)$this->getStorage()->get(self::SETTING_CAFE, $this->enable_cafe));
+		$this->enableContentAdministration((bool)$this->getStorage()->get(self::SETTING_CONTENT,$this->enable_content));
+		$this->enableStandardRoom((bool)$this->getStorage()->get(self::SETTING_STD_ROOM, $this->enable_standard_room));
 		$this->setWebstartUrl($this->getStorage()->get(self::SETTING_WEBSTART,$this->webstart));
 		$this->setUserPrefix($this->getStorage()->get(self::SETTING_UPREFIX,$this->user_prefix));
-		$this->setStandardGracePeriodBefore($this->getStorage()->get(self::SETTING_GRACE_PERIOD_BEFORE,$this->grace_period_before));
-		$this->setStandardGracePeriodAfter($this->getStorage()->get(self::SETTING_GRACE_PERIOD_AFTER, $this->grace_period_after));
-		$this->enableAvatar($this->getStorage()->get(self::SETTING_AVATAR, $this->avatar));
+		$this->setStandardGracePeriodBefore((int)$this->getStorage()->get(self::SETTING_GRACE_PERIOD_BEFORE,$this->grace_period_before));
+		$this->setStandardGracePeriodAfter((int)$this->getStorage()->get(self::SETTING_GRACE_PERIOD_AFTER, $this->grace_period_after));
+		$this->enableAvatar((bool)$this->getStorage()->get(self::SETTING_AVATAR, $this->avatar));
 		$this->setMTOMCert($this->getStorage()->get(self::SETTING_MTOM_CERT,$this->mtom_cert));
-		$this->enablePhoneConference($this->getStorage()->get(self::SETTING_PHONE_CONFERENCE, $this->isPhoneConferenceEnabled()));
-		$this->enablePhoneDialOut($this->getStorage()->get(self::SETTING_PHONE_DIAL_OUT, $this->isPhoneDialOutEnabled()));
-		$this->enablePhoneDialOutParticipants($this->getStorage()->get(self::SETTING_PHONE_DIAL_OUT_PARTICIPANTS, $this->isPhoneDialOutParticipantsEnabled()));
-		$this->enableMobileAccess($this->getStorage()->get(self::SETTING_MOBILE,$this->isMobileAccessEnabled()));
-		$this->enableSessionRecorder($this->getStorage()->get(self::SETTING_RECORDER,$this->isSessionRecorderEnabled()));
-		$this->enableLearningProgress($this->getStorage()->get(self::SETTING_LEARNING_PROGRESS, $this->isLearningProgressEnabled()));
+		$this->enablePhoneConference((bool)$this->getStorage()->get(self::SETTING_PHONE_CONFERENCE, $this->isPhoneConferenceEnabled()));
+		$this->enablePhoneDialOut((bool)$this->getStorage()->get(self::SETTING_PHONE_DIAL_OUT, $this->isPhoneDialOutEnabled()));
+		$this->enablePhoneDialOutParticipants((bool)$this->getStorage()->get(self::SETTING_PHONE_DIAL_OUT_PARTICIPANTS, $this->isPhoneDialOutParticipantsEnabled()));
+		$this->enableMobileAccess((bool)$this->getStorage()->get(self::SETTING_MOBILE,$this->isMobileAccessEnabled()));
+		$this->enableSessionRecorder((bool)$this->getStorage()->get(self::SETTING_RECORDER,$this->isSessionRecorderEnabled()));
+		$this->enableLearningProgress((bool)$this->getStorage()->get(self::SETTING_LEARNING_PROGRESS, $this->isLearningProgressEnabled()));
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function isSessionRecorderEnabled()
+	public function isSessionRecorderEnabled() : bool
 	{
 		return $this->session_recorder;
 	}
 
-	/**
-	 * @param bool $a_session_recorder
-	 */
-	public function enableSessionRecorder($a_session_recorder)
+	public function enableSessionRecorder(bool $a_session_recorder)
 	{
 		$this->session_recorder = $a_session_recorder;
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function isMobileAccessEnabled()
+	public function isMobileAccessEnabled() : bool
 	{
 		return $this->mobile_access_enabled;
 	}
 
-	/**
-	 * @param bool $a_mobile_access
-	 */
-	public function enableMobileAccess($a_mobile_access)
+	public function enableMobileAccess(bool $a_mobile_access)
 	{
 		$this->mobile_access_enabled = $a_mobile_access;
 	}
 
-	/**
-	 * @param bool $a_phone_enabled
-	 */
-	public function enablePhoneOptions($a_phone_enabled)
+	public function enablePhoneOptions(bool $a_phone_enabled)
 	{
 		$this->phone_enabled = $a_phone_enabled;
 	}
@@ -440,7 +425,7 @@ class ilViteroSettings
 	/**
 	 * @return bool
 	 */
-	public function arePhoneOptionsEnabled()
+	public function arePhoneOptionsEnabled() : bool
 	{
 		return
 			$this->isPhoneConferenceEnabled() ||
@@ -448,50 +433,32 @@ class ilViteroSettings
 			$this->isPhoneDialOutParticipantsEnabled();
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function isPhoneConferenceEnabled()
+	public function isPhoneConferenceEnabled() : bool
 	{
 		return $this->phone_conference;
 	}
 
-	/**
-	 * @param $a_stat
-	 */
-	public function enablePhoneConference($a_stat)
+	public function enablePhoneConference(bool $a_stat)
 	{
 		$this->phone_conference = $a_stat;
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function isPhoneDialOutEnabled()
+	public function isPhoneDialOutEnabled() : bool
 	{
 		return $this->phone_dial_out;
 	}
 
-	/**
-	 * @param $a_stat
-	 */
-	public function enablePhoneDialOut($a_stat)
+	public function enablePhoneDialOut(bool $a_stat)
 	{
 		$this->phone_dial_out = $a_stat;
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function isPhoneDialOutParticipantsEnabled()
+	public function isPhoneDialOutParticipantsEnabled() : bool
 	{
 		return $this->phone_dial_out_part;
 	}
 
-	/**
-	 * @param $a_stat
-	 */
-	public function enablePhoneDialOutParticipants($a_stat)
+	public function enablePhoneDialOutParticipants(bool $a_stat)
 	{
 		$this->phone_dial_out_part = $a_stat;
 	}
