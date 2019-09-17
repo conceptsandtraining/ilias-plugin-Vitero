@@ -85,16 +85,28 @@ abstract class ilViteroSoapConnector
 	{
 
 		try {
+			$options = array(
+				'cache_wsdl' => 0,
+				'trace' => 1,
+				'exceptions' => true,
+				'classmap' => [
+					'phonetype' => 'ilViteroPhone'
+				]
+			);
+
+			$proxy = $this->getSettings()->getProxy();
+			$port = $this->getSettings()->getPort();
+			if(
+				$proxy !== '' &&
+				$port !== ''
+			) {
+				$options['proxy_host'] = $proxy;
+				$options['proxy_port'] = $port;
+			}
+
 			$this->client = new SoapClient(
 				$this->getSettings()->getServerUrl().'/'.$this->getWsdlName(),
-				array(
-					'cache_wsdl' => 0,
-					'trace' => 1,
-					'exceptions' => true,
-					'classmap' => [
-						'phonetype' => 'ilViteroPhone'
-					]
-				)
+				$options
 			);
 			$this->client->__setSoapHeaders(
 				$head = new ilViteroSoapWsseAuthHeader(
