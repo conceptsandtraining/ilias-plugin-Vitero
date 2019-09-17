@@ -31,6 +31,8 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 	const F_MOBILE = 'mobile';
 	const F_RECORDER = 'recorder';
 	const F_LEARNING_PROGRESS = 'learning_progress';
+	const F_PROXY = 'proxy';
+	const F_PORT = 'port';
 
 	/**
 	* Handles all commmands, default is "configure"
@@ -163,11 +165,29 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		$ws->setValue($settings->getWebstartUrl());
 		$form->addItem($ws);
 
+		//  Server Section
+		$server = new ilFormSectionHeaderGUI();
+		$server->setTitle($this->getPluginObject()->txt('server_settings'));
+		$form->addItem($server);
+
+		$proxy = new ilTextInputGUI(
+			$this->getPluginObject()->txt('proxy'),
+			self::F_PROXY
+		);
+		$proxy->setValue($settings->getProxy());
+		$form->addItem($proxy);
+
+		$port = new ilTextInputGUI(
+			$this->getPluginObject()->txt('port'),
+			self::F_PORT
+		);
+		$port->setValue($settings->getPort());
+		$form->addItem($port);
+
 		//  Client Section
 		$client = new ilFormSectionHeaderGUI();
 		$client->setTitle($this->getPluginObject()->txt('client_settings'));
 		$form->addItem($client);
-
 
 		// cafe
 		$cafe = new ilCheckboxInputGUI(
@@ -390,6 +410,8 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 			$settings->enableMobileAccess((bool)$form->getInput(self::F_MOBILE));
 			$settings->enableSessionRecorder((bool)$form->getInput(self::F_RECORDER));
 			$settings->enableLearningProgress((bool)$form->getInput(self::F_LEARNING_PROGRESS));
+			$settings->setProxy(trim($form->getInput(self::F_PROXY)));
+			$settings->setPort(trim($form->getInput(self::F_PORT)));
 			$settings->save();
 
 			ilUtil::sendSuccess($lng->txt('settings_saved'), true);
