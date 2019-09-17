@@ -352,23 +352,23 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 			{
 				$settings->setAdminPass($form->getInput('admin_pass'));
 			}
-			$settings->setCustomer($form->getInput('customer'));
-			$settings->useLdap($form->getInput('ldap'));
-			$settings->enableCafe($form->getInput('cafe'));
-			$settings->enableContentAdministration($form->getInput('content'));
-			$settings->enableStandardRoom($form->getInput('std_room'));
+			$settings->setCustomer((int)$form->getInput('customer'));
+			$settings->useLdap((bool)$form->getInput('ldap'));
+			$settings->enableCafe((bool)$form->getInput('cafe'));
+			$settings->enableContentAdministration((bool)$form->getInput('content'));
+			$settings->enableStandardRoom((bool)$form->getInput('std_room'));
 			$settings->setWebstartUrl($form->getInput('webstart'));
 			$settings->setUserPrefix($form->getInput('uprefix'));
 			$settings->setStandardGracePeriodBefore($form->getInput('grace_period_before'));
 			$settings->setStandardGracePeriodAfter($form->getInput('grace_period_after'));
-			$settings->enableAvatar((int) $form->getInput('avatar'));
-			$settings->setMTOMCert($form->getInput('mtom_cert'));
-			$settings->enablePhoneConference($form->getInput('phone_conference'));
-			$settings->enablePhoneDialOut($form->getInput('phone_dial_out'));
-			$settings->enablePhoneDialOutParticipants($form->getInput('phone_dial_out_part'));
-			$settings->enableMobileAccess($form->getInput('mobile'));
-			$settings->enableSessionRecorder($form->getInput('recorder'));
-			$settings->enableLearningProgress($form->getInput('learning_progress'));
+			$settings->enableAvatar((bool)$form->getInput('avatar'));
+			//$settings->setMTOMCert($form->getInput('mtom_cert'));
+			$settings->enablePhoneConference((bool)$form->getInput('phone_conference'));
+			$settings->enablePhoneDialOut((bool)$form->getInput('phone_dial_out'));
+			$settings->enablePhoneDialOutParticipants((bool)$form->getInput('phone_dial_out_part'));
+			$settings->enableMobileAccess((bool)$form->getInput('mobile'));
+			$settings->enableSessionRecorder((bool)$form->getInput('recorder'));
+			$settings->enableLearningProgress((bool)$form->getInput('learning_progress'));
 			$settings->save();
 
 			ilUtil::sendSuccess($lng->txt('settings_saved'), true);
