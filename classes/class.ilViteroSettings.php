@@ -145,11 +145,6 @@ class ilViteroSettings
 	private $grace_period_after = 15;
 
 	/**
-	 * @var bool
-	 */
-	private $phone_enabled = false;
-
-	/**
 	 * Constructor
 	 */
 	public function __construct()
@@ -415,11 +410,6 @@ class ilViteroSettings
 	public function enableMobileAccess(bool $a_mobile_access)
 	{
 		$this->mobile_access_enabled = $a_mobile_access;
-	}
-
-	public function enablePhoneOptions(bool $a_phone_enabled)
-	{
-		$this->phone_enabled = $a_phone_enabled;
 	}
 
 	/**
