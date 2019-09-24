@@ -142,6 +142,23 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 		$ws->setValue($settings->getWebstartUrl());
 		$form->addItem($ws);
 
+		//  Server Section
+		$server = new ilFormSectionHeaderGUI();
+		$server->setTitle($this->getPluginObject()->txt('server_settings'));
+		$form->addItem($server);
+		$proxy = new ilTextInputGUI(
+			$this->getPluginObject()->txt('proxy'),
+			'proxy'
+		);
+		$proxy->setValue($settings->getProxy());
+		$form->addItem($proxy);
+		$port = new ilTextInputGUI(
+			$this->getPluginObject()->txt('port'),
+			'port'
+		);
+		$port->setValue($settings->getPort());
+		$form->addItem($port);
+
 		//  Client Section
 		$client = new ilFormSectionHeaderGUI();
 		$client->setTitle($this->getPluginObject()->txt('client_settings'));
@@ -369,6 +386,8 @@ class ilViteroConfigGUI extends ilPluginConfigGUI
 			$settings->enableMobileAccess($form->getInput('mobile'));
 			$settings->enableSessionRecorder($form->getInput('recorder'));
 			$settings->enableLearningProgress($form->getInput('learning_progress'));
+			$settings->setProxy(trim($form->getInput('proxy')));
+			$settings->setPort(trim($form->getInput('port')));
 			$settings->save();
 
 			ilUtil::sendSuccess($lng->txt('settings_saved'), true);

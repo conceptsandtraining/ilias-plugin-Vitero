@@ -37,6 +37,16 @@ class ilViteroSettings
 	private $grace_period_before = 15;
 	private $grace_period_after = 15;
 
+	/**
+	 * @var string
+	 */
+	private $proxy = '';
+
+	/**
+	 * @var string
+	 */
+	private $port = '';
+
 	
 	/**
 	 * Constructor
@@ -230,6 +240,25 @@ class ilViteroSettings
 		return $this->enable_learning_progress;
 	}
 
+	public function getProxy()
+	{
+		return $this->proxy;
+	}
+
+	public function setProxy($proxy)
+	{
+		$this->proxy = $proxy;
+	}
+
+	public function getPort()
+	{
+		return $this->port;
+	}
+
+	public function setPort($port)
+	{
+		$this->port = $port;
+	}
 
 	/**
 	 * Save settings
@@ -256,7 +285,8 @@ class ilViteroSettings
 		$this->getStorage()->set('mobile', (int) $this->isMobileAccessEnabled());
 		$this->getStorage()->set('recorder', (int) $this->isSessionRecorderEnabled());
 		$this->getStorage()->set('learning_progress', $this->isLearningProgressEnabled());
-
+		$this->getStorage()->set('proxy', $this->getProxy());
+		$this->getStorage()->set('port', $this->getPort());
 	}
 
 	/**
@@ -284,6 +314,8 @@ class ilViteroSettings
 		$this->enableMobileAccess($this->getStorage()->get('mobile',$this->isMobileAccessEnabled()));
 		$this->enableSessionRecorder($this->getStorage()->get('recorder',$this->isSessionRecorderEnabled()));
 		$this->enableLearningProgress($this->getStorage()->get('learning_progress', $this->isLearningProgressEnabled()));
+		$this->setProxy($this->getStorage()->get('proxy', $this->getPort()));
+		$this->setPort($this->getStorage()->get('port', $this->getProxy()));
 	}
 
 	/**
