@@ -156,3 +156,5 @@ settings_phone_dial_out#:#Dial Out
 settings_phone_dial_out_info#:#Wenn aktiviert, können sich Teilnehmer auch anrufen lassen.
 settings_phone_dial_out_part#:#Teilnehmer per Telefon dazuschalten
 settings_phone_dial_out_part_info#:#Wenn aktiviert, können Teilnehmer per Telefon dazugeschaltet werden.
+proxy#:#Proxy IP
+port#:#Port
