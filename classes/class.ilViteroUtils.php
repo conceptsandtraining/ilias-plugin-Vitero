@@ -255,15 +255,19 @@ class ilViteroUtils
 	/** Checks if the customer has Monitor Mode */
 	public static function hasCustomerMonitoringMode()
 	{
-		$licence_connector = new ilViteroLicenceSoapConnector();
+		try {
+			$licence_connector = new ilViteroLicenceSoapConnector();
 
-		$modules = $licence_connector->getModulesForCustomer(ilViteroSettings::getInstance()->getCustomer());
+			$modules = $licence_connector->getModulesForCustomer(ilViteroSettings::getInstance()->getCustomer());
 
-		foreach($modules->modules->module as $module)
-		{
-			if($module->type == "MONITORING"){
-				return true;
+			foreach($modules->modules->module as $module)
+			{
+				if($module->type == "MONITORING"){
+					return true;
+				}
 			}
+		} catch (ilViteroConnectorException $e) {
+			return false;
 		}
 
 		return false;
