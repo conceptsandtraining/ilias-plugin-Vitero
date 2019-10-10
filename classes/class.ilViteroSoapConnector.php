@@ -119,8 +119,8 @@ abstract class ilViteroSoapConnector
 			return;
 		}
 		catch(SoapFault $e) {
-			$GLOBALS['ilLog']->write('VITERO: '. $e->getMessage());
-			$GLOBALS['ilLog']->write($this->getSettings()->getServerUrl().'/'.$this->getWsdlName());
+			$this->getLogger()->error('VITERO: '. $e->getMessage());
+			$this->getLogger()->info($this->getSettings()->getServerUrl().'/'.$this->getWsdlName());
 			throw new ilViteroConnectorException('',self::ERR_WSDL);
 		}
 	}
