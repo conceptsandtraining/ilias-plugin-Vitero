@@ -158,3 +158,4 @@ settings_phone_dial_out_part#:#Teilnehmer per Telefon dazuschalten
 settings_phone_dial_out_part_info#:#Wenn aktiviert, können Teilnehmer per Telefon dazugeschaltet werden.
 proxy#:#Proxy IP
 port#:#Port
+server_settings#:#Server-Einstellungen

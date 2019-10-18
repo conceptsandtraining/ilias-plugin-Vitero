@@ -178,3 +178,4 @@ btn_sync_lp#:#Synchronize
 info_msg_session_sinc_success#:#Vitero session synchronized successfully
 proxy#:#Proxy IP
 port#:#Port
+server_settings#:#Server Settings
