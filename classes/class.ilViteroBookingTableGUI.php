@@ -110,7 +110,11 @@ class ilViteroBookingTableGUI extends ilTable2GUI
 			$path = new ilPathGUI();
 			$path->setUseImages(false);
 			$path->enableTextOnly(false);
-			$this->tpl->setVariable('OBJ_PATH',$path->getPath(ROOT_FOLDER_ID, end(ilObject::_getAllReferences($a_set['group']))));
+
+			if ($a_set['group'] !== 0) {
+				$group = end(ilObject::_getAllReferences($a_set['group']));
+				$this->tpl->setVariable('OBJ_PATH',$path->getPath(ROOT_FOLDER_ID, $group));
+			}
 		}
 
 
