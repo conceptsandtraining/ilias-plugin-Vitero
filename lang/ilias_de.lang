@@ -159,3 +159,17 @@ settings_phone_dial_out_part_info#:#Wenn aktiviert, können Teilnehmer per Telef
 proxy#:#Proxy IP
 port#:#Port
 server_settings#:#Server-Einstellungen
+activate_learning_progress#:#Lernfortschritt
+activate_learning_progress_info#:#Aktiert die Konfiguration für den Lernfortschritt an Vitero Sitzungen.
+edit_learning_progress_properties#:#Einstellungen Lernfortschritt
+min_percentage#:#Minimum Prozent
+min_percentage_info#:#Mindest Anwesenheit für den Status 'Bestanden'
+mode#:#Mode
+one_session#:#Einzel Sitzung
+multi_session#:#Multi Sitzung
+min_sessions#:#Mindestanzahl an Sitzungen
+min_sessions_info#:#Mindestanzahl der Sitzungen, an denen teilgenommen werden muss.
+currently_multi_appointments#:#Diese Sitzung hat mehrere Termine.
+currently_one_appointment#:#Diese Sitzung hat nur einen Termin.
+learning_progress#:#Lernfortschritt
+err_soap_502#:#Soap Error 502 Bad Gateway
