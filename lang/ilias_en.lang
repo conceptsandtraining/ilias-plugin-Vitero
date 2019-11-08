@@ -179,3 +179,4 @@ info_msg_session_sinc_success#:#Vitero session synchronized successfully
 proxy#:#Proxy IP
 port#:#Port
 server_settings#:#Server Settings
+err_soap_502#:#Soap Error 502 Bad Gateway
