@@ -173,3 +173,21 @@ currently_multi_appointments#:#Diese Sitzung hat mehrere Termine.
 currently_one_appointment#:#Diese Sitzung hat nur einen Termin.
 learning_progress#:#Lernfortschritt
 err_soap_502#:#Soap Error 502 Bad Gateway
+delete_info_minimum_app#:#Für die aktuellen Lernfortschritt-Einstellungen müssen mindestens zwei Sitzungstermine vorhanden sein.
+delete_info_disable_lp#:#Für die aktuellen Lernfortschritt-Einstellungen muss mindestens ein Sitzungstermin vorhanden sein.
+add_appointment_disabled_info#:#Die Lernfortschritteinstellungen läßt das Erstellen von weiteren Situngsterminen nicht zu.
+btn_sync_lp_info#:#Alle vitero-Sitzungstermine synchronisieren.
+btn_sync_lp#:#Synchronisieren
+info_msg_session_sinc_success#:#Die vitero-Sitzungen wurden synchronisiert.
+edit_learning_progress#:#Lernfortschritt bearbeiten
+activate_inspire#:#"Essentials"-Auswahl
+activate_inspire_info#:#Wenn aktiviert, kann beim Anlegen neuer Termine ausgewählt werden, ob diese vom Typ "Essentials" oder "Inspire" erstellt werden sollen.
+form_essential_selection#:#Typ
+form_inspire_option#:#Inspire-Client verwenden
+form_essentials_option#:#Essentials-Client verwenden
+form_essentials_selection_info#:#Bitte legen Sie fest, welche Art des Clients verwendet werden soll.
+client_type_default#:#Standard
+client_type_essentials#:#Essentials
+client_type_inspire#:#Inspire
+app_tbl_col_inspire#:#Typ
+filemanager_start#:#vitero-Dateiverwaltung öffnen

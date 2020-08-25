@@ -121,6 +121,7 @@ class ilObjViteroGUI extends ilObjectPluginGUI
 			case 'unlockUsers':
 			case 'lockUsers':
 			case 'materials':
+            case 'showMaterials':
 			case 'startAdminSession':
 			case 'syncLearningProgress':
 			//case "...":
@@ -777,7 +778,7 @@ class ilObjViteroGUI extends ilObjectPluginGUI
 		$learning_progress->setInfo($vitero_plugin->txt('activate_learning_progress_info'));
 
 		$minimum_percentage = new ilNumberInputGUI($vitero_plugin->txt("min_percentage"),"min_percentage");
-		$minimum_percentage->setInfo($vitero_plugin->txt("min_sessions_info"));
+		$minimum_percentage->setInfo($vitero_plugin->txt("min_percentage_info"));
 		$minimum_percentage->setMaxValue(100);
 		$minimum_percentage->setMinValue(0);
 		$minimum_percentage->setMaxLength(3);
@@ -949,6 +950,14 @@ class ilObjViteroGUI extends ilObjectPluginGUI
 			ilUtil::sendFailure(ilViteroPlugin::getInstance()->txt('user_locked_info'));
 			$access = false;
 		}
+
+		\ilChangeEvent::_recordReadEvent(
+			$this->object->getType(),
+			$this->object->getRefId(),
+			$this->object->getId(),
+			$user->getId()
+		);
+
 		
 		// find next booking
 		$booking_id = ilViteroUtils::getOpenRoomBooking($this->object->getVGroupId());
@@ -979,7 +988,7 @@ class ilObjViteroGUI extends ilObjectPluginGUI
 				$this->ctrl->setParameter($this,'bid',$booking_id);
 				$info->setFormAction($ilCtrl->getFormAction($this),'_blank');
 				$big_button = '<div class="il_ButtonGroup" style="margin:25px; text-align:center; font-size:25px;">'.
-					'<input type="submit" class="submit" name="cmd[startSession]" value="'.ilViteroPlugin::getInstance()->txt('start_session').
+					'<input type="submit" formtarget="_blank" class="submit" name="cmd[startSession]" value="'.ilViteroPlugin::getInstance()->txt('start_session').
 					'" style="padding:10px;" /></div>';
 				$info->addSection("");
 				$info->addProperty("", $big_button);
@@ -993,7 +1002,7 @@ class ilObjViteroGUI extends ilObjectPluginGUI
 		{
 			$info->setFormAction($ilCtrl->getFormAction($this),'_blank');
 			$big_button = '<div class="il_ButtonGroup" style="margin:25px; text-align:center; font-size:25px;">'.
-				'<input type="submit" class="submit" name="cmd[startAdminSession]" value="'.ilViteroPlugin::getInstance()->txt('start_admin_session').
+				'<input type="submit" formtarget="_blank" class="submit" name="cmd[startAdminSession]" value="'.ilViteroPlugin::getInstance()->txt('start_admin_session').
 				'" style="padding:10px;" /></div>';
 			if(!$info_added_section) {
 				$info->addSection("");
@@ -1038,6 +1047,31 @@ class ilObjViteroGUI extends ilObjectPluginGUI
 	}
 
 	public function materials()
+	{
+        global $DIC;
+
+        $tabs = $DIC->tabs();
+        $tabs->activateTab('materials');
+
+        $ui_factory = $DIC->ui()->factory();
+
+        $toolbar = $DIC->toolbar();
+        $toolbar->setFormAction($this->ctrl->getFormAction($this));
+
+        $link_button = \ilLinkButton::getInstance();
+        $link_button->setCaption($this->getPlugin()->txt('filemanager_start'),false);
+        $link_button->setTarget('_blank');
+        $link_button->setUrl($this->ctrl->getLinkTarget($this,'showMaterials'));
+
+
+        $toolbar->addButtonInstance(
+            $link_button
+        );
+    }
+
+
+
+	public function showMaterials()
 	{
 		global $ilUser, $ilTabs, $ilAccess, $ilCtrl;
 
@@ -1094,15 +1128,12 @@ class ilObjViteroGUI extends ilObjectPluginGUI
 			$ilCtrl->redirect($this,'infoScreen');
 		}
 
-		$tpl = ilViteroPlugin::getInstance()->getTemplate('tpl.materials.html');
-
-		$tpl->setVariable(
-			'FRAME_SRC',
-			ilViteroSettings::getInstance()->getGroupFolderLink().
+		$this->ctrl->redirectToURL(
+		    $url = \ilViteroSettings::getInstance()->getGroupFolderLink() .
 				'?fl=1&action=reload&topmargin=10&group_id='.$this->object->getVGroupId().'&'.
 				'code='.$code_vms
 		);
-		$GLOBALS['tpl']->setContent($tpl->get());
+        return;
 	}
 	
 	public function startAdminSession()
