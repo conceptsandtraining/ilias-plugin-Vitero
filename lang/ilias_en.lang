@@ -180,3 +180,15 @@ proxy#:#Proxy IP
 port#:#Port
 server_settings#:#Server Settings
 err_soap_502#:#Soap Error 502 Bad Gateway
+edit_learning_progress#:#Edit Learning Progress
+activate_inspire#:#"Essentials" Selection
+activate_inspire_info#:#If enabled, it is possible to choose between the "essentials" and "inspire" types during the creation of new appointments.
+form_essential_selection#:#Type
+form_inspire_option#:#Use Inspire-Client
+form_essentials_option#:#Use Essentials-Client
+form_essentials_selection_info#:#Please choose the client type for this appointment.
+client_type_default#:#Default
+client_type_essentials#:#Essentials
+client_type_inspire#:#Inspire
+app_tbl_col_inspire#:#Type
+filemanager_start#:#Open vitero file manager

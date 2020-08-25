@@ -252,24 +252,31 @@ class ilViteroUtils
 		return $available_rooms;
 	}
 
-	/** Checks if the customer has Monitor Mode */
+	/**
+	 * @return bool
+	 */
 	public static function hasCustomerMonitoringMode()
 	{
+		global $DIC;
+
+		$logger = $DIC->logger()->xvit();
+
 		try {
 			$licence_connector = new ilViteroLicenceSoapConnector();
-
 			$modules = $licence_connector->getModulesForCustomer(ilViteroSettings::getInstance()->getCustomer());
 
+			$logger->dump($modules, \ilLogLevel::DEBUG);
 			foreach($modules->modules->module as $module)
 			{
-				if($module->type == "MONITORING"){
+				if($module->type == "MONITORING") {
 					return true;
 				}
 			}
-		} catch (ilViteroConnectorException $e) {
+		}
+		catch(\ilViteroConnectorException $e) {
+			$logger->warning('Reading active modules failed with message: ' . $e->getMessage());
 			return false;
 		}
-
 		return false;
 	}
 
